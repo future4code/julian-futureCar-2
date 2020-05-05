@@ -21,19 +21,19 @@ export class AppContainer extends Component {
       if(this.state.secaoAtual === 'LOGIN'){
         return (
           <SecaoLogin
-        
+            
           />
         )
       }else if(this.state.secaoAtual === 'COMPRA'){
         return(
           <SecaoCompra
-        
+           
           />
         )
       }else if(this.state.secaoAtual === 'ANUNCIO'){
         return(
           <SecaoAnuncio
-        
+            
           />
         )
       }
