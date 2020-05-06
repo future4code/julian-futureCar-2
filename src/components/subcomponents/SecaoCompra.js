@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+import BotaoSairSecaoCompra from '@material-ui/core/Button'
 
-class SecaoCompra extends Component {
+class SecaoCompra extends React.Component {
 
     render(){
         return(
             <div>
-                SecaoCompra
+                <BotaoSairSecaoCompra variant='outlined' onClick={this.props.onClickVoltarParaLogin}>
+                    VOLTAR
+                </BotaoSairSecaoCompra>
             </div>
         )
     }

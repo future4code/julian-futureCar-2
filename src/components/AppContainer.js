@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import SecaoLogin from './subcomponents/SecaoLogin'
 import SecaoCompra from './subcomponents/SecaoCompra'
 import SecaoAnuncio from './subcomponents/SecaoAnuncio'
@@ -9,10 +9,25 @@ const TelaAppContainer = styled.main`
   width: 100vw;
   height: 100vh;
 `
-export class AppContainer extends Component {
+class AppContainer extends React.Component {
 
   state={
     secaoAtual: 'LOGIN'
+  }
+
+  onClickSecaoCompra =()=>{
+    console.log('secao compra')
+    this.setState({ secaoAtual: 'COMPRA' })
+  }
+
+  onClickSecaoAnuncio = ()=>{
+    console.log('secao anuncio')
+    this.setState({ secaoAtual: 'ANUNCIO' })
+  }
+
+  onClickVoltarParaLogin=()=>{
+    console.log('secao login')
+    this.setState({ secaoAtual: 'LOGIN' })
   }
 
   render() {
@@ -21,19 +36,20 @@ export class AppContainer extends Component {
       if(this.state.secaoAtual === 'LOGIN'){
         return (
           <SecaoLogin
-        
+          onClickSecaoCompra={this.onClickSecaoCompra}
+          onClickSecaoAnuncio={this.onClickSecaoAnuncio}
           />
         )
       }else if(this.state.secaoAtual === 'COMPRA'){
         return(
           <SecaoCompra
-        
+           onClickVoltarParaLogin={this.onClickVoltarParaLogin}
           />
         )
       }else if(this.state.secaoAtual === 'ANUNCIO'){
         return(
           <SecaoAnuncio
-        
+          onClickVoltarParaLogin={this.onClickVoltarParaLogin}
           />
         )
       }
@@ -48,3 +64,4 @@ export class AppContainer extends Component {
     )
   }
 }
+export default AppContainer
