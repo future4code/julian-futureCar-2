@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import BotaoLogin from '@material-ui/core/Button'
 
@@ -18,10 +18,10 @@ const SecaoLoginTitulo = styled.h1`
 `
 
 const SecaoLoginLogo = styled.img`
-
+    max-width: 95%;
 `
 
-class SecaoLogin extends Component {
+class SecaoLogin extends React.Component {
 
     render(){
         return(
@@ -33,11 +33,11 @@ class SecaoLogin extends Component {
                     Seu interesse em carros usados é
                 </SecaoLoginTitulo>
 
-                <BotaoLogin onClick={this.props.onClickSecaoCompra}>
+                <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoCompra}>
                 Comprar?
                 </BotaoLogin>
 
-                <BotaoLogin onClick={this.props.onClickSecaoAnuncio}>
+                <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoAnuncio}>
                 Vender?
                 </BotaoLogin>
                 
