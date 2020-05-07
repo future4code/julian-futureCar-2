@@ -9,6 +9,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import FormGroup from '@material-ui/core/FormGroup';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 
 const FormsContainer = styled.form`
     padding: 30px;
@@ -28,12 +31,12 @@ class FormsAnuncios extends React.Component {
         formsEnviado: false
     };
 
-    componentDidMount(){
-        console.log(this.state.infosPessoais)
+    componentDidMount() {
+        console.log(this.state.infosNegociacao)
     }
 
-    componentDidUpdate(){
-        console.log(this.state.infosPessoais)
+    componentDidUpdate() {
+        console.log(this.state.infosNegociacao)
     }
 
     //inputs controlados dos Dados Pessoais
@@ -81,56 +84,146 @@ class FormsAnuncios extends React.Component {
                 ownerPic: this.state.infosPessoais.ownerPic
             }
         })
-    }
+    };
     onChangeDoTelefone = (e) => {
         this.setState({
             infosPessoais: {
                 owner: this.state.infosPessoais.owner,
                 cpf: this.state.infosPessoais.cpf,
-                address: { 
-                    city: this.state.infosPessoais.address.city, 
-                    uf: this.state.infosPessoais.address.uf 
+                address: {
+                    city: this.state.infosPessoais.address.city,
+                    uf: this.state.infosPessoais.address.uf
                 },
                 phone: e.target.value,
                 ownerPic: this.state.infosPessoais.ownerPic
             }
         })
-    }
+    };
     onChangeImgDono = (e) => {
         this.setState({
             infosPessoais: {
                 owner: this.state.infosPessoais.owner,
                 cpf: this.state.infosPessoais.cpf,
-                address: { 
-                    city: this.state.infosPessoais.address.city, 
-                    uf: this.state.infosPessoais.address.uf 
+                address: {
+                    city: this.state.infosPessoais.address.city,
+                    uf: this.state.infosPessoais.address.uf
                 },
                 phone: this.state.infosPessoais.phone,
                 ownerPic: e.target.value
             }
         })
-    }
+    };
 
 
     //inputs controlados dos Dados do Veículo
+
+    onChangePlaca = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: e.target.value,
+                year: this.state.infosVeiculo.year,
+                name: this.state.infosVeiculo.name,
+                color: this.state.infosVeiculo.color,
+                category: this.state.infosVeiculo.category,
+                carPic: this.state.infosVeiculo.carPic,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeAno = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: e.target.value,
+                name: this.state.infosVeiculo.name,
+                color: this.state.infosVeiculo.color,
+                category: this.state.infosVeiculo.category,
+                carPic: this.state.infosVeiculo.carPic,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeMarca = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: this.state.infosVeiculo.year,
+                name: e.target.value,
+                color: this.state.infosVeiculo.color,
+                category: this.state.infosVeiculo.category,
+                carPic: this.state.infosVeiculo.carPic,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeCor = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: this.state.infosVeiculo.year,
+                name: this.state.infosVeiculo.name,
+                color: e.target.value,
+                category: this.state.infosVeiculo.category,
+                carPic: this.state.infosVeiculo.carPic,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeCategoria = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: this.state.infosVeiculo.year,
+                name: this.state.infosVeiculo.name,
+                color: this.state.infosVeiculo.color,
+                category: e.target.value,
+                carPic: this.state.infosVeiculo.carPic,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeImgCarro = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: this.state.infosVeiculo.year,
+                name: this.state.infosVeiculo.name,
+                color: this.state.infosVeiculo.color,
+                category: this.state.infosVeiculo.category,
+                carPic: e.target.value,
+                description: this.state.infosVeiculo.description
+            }
+        })
+    };
+    onChangeDescricao = (e) => {
+        this.setState({
+            infosVeiculo: {
+                plate: this.state.infosVeiculo.plate,
+                year: this.state.infosVeiculo.year,
+                name: this.state.infosVeiculo.name,
+                color: this.state.infosVeiculo.color,
+                category: this.state.infosVeiculo.category,
+                carPic: this.state.infosVeiculo.carPic,
+                description: e.target.value
+            }
+        })
+    };
 
     //inputs controlados dos Dados de Negociação
 
     render() {
 
         const selectUF = [
-            {value:'SP', label:'SP'},{value:'RS', label:'RS'},{value:'PE', label:'PE'},{value:'AM', label:'AM'},{value:'DF', label:'DF'}
+            { value: 'SP', label: 'SP' }, { value: 'RS', label: 'RS' }, { value: 'PE', label: 'PE' }, { value: 'AM', label: 'AM' }, { value: 'DF', label: 'DF' }
         ];
 
         const selectPagamento = [
             { value: 'à vista', label: 'à vista' }, { value: 'A prazo', label: 'A prazo' }, { value: 'carnê', label: 'carnê' }
         ];
 
-
         const selectPrazoDeEntrega = [
             { value: '01 dia', label: '01 dia' }, { value: '03 dias', label: '03 dias' }, { value: '07 dias', label: '07 dias' }, { value: '15 dias', label: '15 dias' }
         ];
-
 
         return (
 
@@ -151,32 +244,41 @@ class FormsAnuncios extends React.Component {
                         id="outlined-basic" label="Cidade" variant="outlined" size="small" type="text" />
 
                     <TextField select onChange={this.onChangeUF} defaultValue={this.state.infosPessoais.address.uf}
-                    label="UF" id="outlined-basic" variant="outlined">
+                        label="UF" id="outlined-basic" variant="outlined">
                         {selectUF.map(option => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>
                         ))}
                     </TextField>
-                    
+
                     <TextField onChange={this.onChangeDoTelefone} defaultValue={this.state.infosPessoais.phone}
-                        placeholder="Insira o DDD + telefone"
+                        placeholder="Insira DDD + telefone"
                         id="outlined-basic" label="Telefone" variant="outlined" size="small" type="tel" />
 
                     <TextField onChange={this.onChangeImgDono} defaultValue={this.state.infosPessoais.ownerPic}
                         placeholder="Insira a URL da imagem"
                         id="outlined-basic" label="Sua Foto" variant="outlined" size="small" type="url" />
-                    
+
                 </div>
 
                 <div>
                     <p>Informações do veículo</p>
-                    <TextField id="outlined-basic" label="Placa" variant="outlined" />
-                    <TextField id="outlined-basic" label="Ano" variant="outlined" />
-                    <TextField id="outlined-basic" label="Cor" variant="outlined" />
+                    <TextField onChange={this.onChangePlaca} defaultValue={this.state.infosVeiculo.plate}
+                        id="outlined-basic" label="Placa" variant="outlined" placeholder="Ex.: AAA-0000" />
+
+                    <TextField onChange={this.onChangeMarca} defaultValue={this.state.infosVeiculo.name}
+                        id="outlined-basic" label="Marca" variant="outlined" />
+
+                    <TextField onChange={this.onChangeAno} defaultValue={this.state.infosVeiculo.year}
+                        id="outlined-basic" label="Ano" variant="outlined" type="number" />
+
+                    <TextField onChange={this.onChangeCor} defaultValue={this.state.infosVeiculo.color}
+                        id="outlined-basic" label="Cor" variant="outlined" />
+
                     <FormControl>
-                        <FormLabel>Categoria do Veículo</FormLabel>
-                        <RadioGroup row >
+                        <FormLabel >Categoria do Veículo</FormLabel>
+                        <RadioGroup onChange={this.onChangeCategoria} defaultValue={this.state.infosVeiculo.category} row >
                             <FormControlLabel value="Esportivo" control={<Radio />} label="Esportivo" />
                             <FormControlLabel value="Popular" control={<Radio />} label="Popular" />
                             <FormControlLabel value="Pickup" control={<Radio />} label="Pickup" />
@@ -184,22 +286,27 @@ class FormsAnuncios extends React.Component {
                             <FormControlLabel value="Super Luxo" control={<Radio />} label="Super Luxo" />
                         </RadioGroup>
                     </FormControl>
-                    <TextField multiline label="Descrição" variant="outlined" rowsMax="3" helperText="Informações adicionais sobre o carro" />
+
+                    <TextField onChange={this.onChangeDescricao} defaultValue={this.state.infosVeiculo.description}
+                        multiline label="Descrição" variant="outlined" rowsMax="3" helperText="Informações adicionais sobre o carro" />
+
+                    <TextField onChange={this.onChangeImgCarro} defaultValue={this.state.infosVeiculo.carPic}
+                        placeholder="Insira a URL da imagem"
+                        id="outlined-basic" label="Foto do Veículo" variant="outlined" size="small" type="url" />
+
                 </div>
 
                 <div>
                     <p>Informações de Negociação</p>
-                    <FormControl>
+                    <FormGroup row>
                         <FormLabel>Formas de pagamento</FormLabel>
-                        <RadioGroup row label="Formas de pagamento" >
-                            <FormControlLabel value="à vista" control={<Radio />} label="à vista" />
-                            <FormControlLabel value="à prazo" control={<Radio />} label="à prazo" />
-                            <FormControlLabel value="carnê" control={<Radio />} label="carnê" />
-                        </RadioGroup>
-                    </FormControl>
+                        <FormControlLabel control={<Checkbox value="à vista" />} label="à vista" />
+                        <FormControlLabel control={<Checkbox value="à prazo" />} label="à prazo" />
+                        <FormControlLabel control={<Checkbox value="carnê" />} label="carnê" />
+                    </FormGroup>
                     <FormControl>
                         <FormLabel>Formas de entrega</FormLabel>
-                        <RadioGroup row label="Formas de entrega" >
+                        <RadioGroup>
                             <FormControlLabel value="Entrega em casa" control={<Radio />} label="Entrega em casa" />
                             <FormControlLabel value="Buscar na casa do anunciante" control={<Radio />} label="Buscar na casa do anunciante" />
                             <FormControlLabel value="Local a combinar" control={<Radio />} label="Local a combinar" />
@@ -218,7 +325,11 @@ class FormsAnuncios extends React.Component {
                     }} />
 
                 </div>
-
+                <div>
+                    <Button variant="outlined" color="secondary" size="large">
+                        Enviar
+                    </Button>
+                </div>
             </FormsContainer>
         )
     }
