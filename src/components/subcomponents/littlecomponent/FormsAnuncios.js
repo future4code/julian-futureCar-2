@@ -23,6 +23,7 @@ const TextField = styled(TextInput)`
 const ImgInput = styled.input`
 
 `
+
 class FormsAnuncios extends React.Component {
     state = {
         infosPessoais: { owner: '', cpf: '', address: { city: '', uf: '' }, phone: '', ownerPic: '' },
