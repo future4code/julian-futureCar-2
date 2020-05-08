@@ -16,21 +16,16 @@ class AppContainer extends React.Component {
   }
 
   onClickSecaoCompra =()=>{
-    console.log('secao compra')
     this.setState({ secaoAtual: 'COMPRA' })
   }
 
   onClickSecaoAnuncio = ()=>{
-    console.log('secao anuncio')
     this.setState({ secaoAtual: 'ANUNCIO' })
   }
 
   onClickVoltarParaLogin=()=>{
-    console.log('secao login')
     this.setState({ secaoAtual: 'LOGIN' })
   }
-
-  
   render() {
 
     let montarSecao = () =>{
