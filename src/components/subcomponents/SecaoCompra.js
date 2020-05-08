@@ -38,6 +38,7 @@ import InputBuscarModelo from '@material-ui/core/Input';
     const PrecoContainer = styled.div`
         display: flex;
         flex-direction: row;
+        align-items: center;
               
     `
 
@@ -93,9 +94,9 @@ class SecaoCompra extends Component {
        
      }
 
-  //  componentDidMount = () => {
-  //     this.filtrarProdutos() 
-   // } 
+    componentDidMount = () => {
+      this.filtrarProdutos() 
+     } 
 
     onChangeSelecionaValor = (event) => {
         this.setState({ordenacao: event.target.value})
@@ -104,6 +105,8 @@ class SecaoCompra extends Component {
 
      onChangeMarcaModelo = (event) => {
          this.setState({inputMarcaModelo: event.target.value});
+         console.log(this.state.inputMarcaModelo)
+         
      }
 
      onChangeinputValorDe = (event) => {
@@ -113,6 +116,11 @@ class SecaoCompra extends Component {
     onChangeinputValorAte =  (event) => {
         this.setState({inputValorAte: event.target.value});
     } 
+
+    onChangeSelectModelo = (event) => {
+        this.setState({ modeloSelecionado: event.target.value});
+        console.log(this.state.modeloSelecionado)
+    }
 
     filtrarProdutos = () => {
         axios.get("https://us-central1-labenu-apis.cloudfunctions.net/futureCarTwo/cars").then(response => {
@@ -125,9 +133,11 @@ class SecaoCompra extends Component {
     }
     
     filtrarValorMaxMin = () => {
-        return this.carros.price
+       return this.carros.price
            .filter((carros) => this.selectMinimo ? carros.price < this.selectMinimo : true)
            .filter((carros) => this.selectMaximo ? carros.price > this.selectMaximo : true)
+           .filter((carros) => this.inputMarcaModelo ? carros.name === this.inputMarcaModelo : true)
+           .filter((carros) => this.inputMarcaModelo ? carros.category === this.inputMarcaModelo : true)
            .ordenacao((a, b) => this.state.sort === "Maior Preço" ? a.price -b.price : b.price - a.price)
       
         
@@ -137,11 +147,35 @@ class SecaoCompra extends Component {
     onClickLimparFiltro = () => {
        this.setState({ inputMarcaModelo: "", inputValorDe: "", inputValorAte: "" });
     }
+
+   
     
     render(){
-        
+         
+       let produtosFiltrados = this.state.cars.price;
+       if(this.state.inputValorDe !== ""){
+           produtosFiltrados = produtosFiltrados.filter(produto => {
+               return produto.price >= this.state.inputValorDe
+           })
+       }
+       if(this.state.inputValorAte !== ""){
+           produtosFiltrados = produtosFiltrados.filter(produto => {
+               return produto.value <= this.state.inputValorAte
+           })
+       }  
+       if(this.state.inputMarcaModelo !== ""){
+           produtosFiltrados = produtosFiltrados.filter(produto => {
+               return produto.category.toLowerCase().includes(this.state.inputMarcaModelo.toLowerCase());
+           });
+          
+           console.log(this.state.inputValorAte, this.state.inputValorDe, this.state.inputMarcaModelo)
+       }
+      
+
+      
         return(
             <Principal>
+               
                  <BarraCabecalho>
                     <BotaoSairSecaoCompra variant='outlined' color="primary"  onClick={this.props.onClickVoltarParaLogin}>
                         VOLTAR
@@ -150,9 +184,11 @@ class SecaoCompra extends Component {
 
                 <InputBusca>
                     <InputBuscarModelo 
-                    placeholder={'Digite marca ou modelo'} 
+                     
+                    placeholder={'Informe marca ou modelo'} 
                     value={this.state.inputMarcaModelo}
                     onChange={this.onChangeMarcaModelo}
+                    type='text'
                     />
                 </InputBusca>
             
@@ -170,13 +206,13 @@ class SecaoCompra extends Component {
  
                     <div>
                     <p><strong>Modelo</strong></p>
-                        <select value={this.modeloSelecionado} onChange={this.onChangeSelectModelo}>
-                            <option value={}>Selecione o modelo</option>
-                            <option value={}>Microvans</option>
-                            <option value={}>Superluxo</option>
-                            <option value={}>Popular</option>
-                            <option value={}>Esportivo</option>
-                            <option value={}>Pick Ups</option>
+                        <select value={this.state.modeloSelecionado} onChange={this.onChangeSelectModelo}>
+                            <option value=''>Selecione o modelo</option>
+                            <option value='Microvans'>Microvans</option>
+                            <option value='SuperLuxo'>Superluxo</option>
+                            <option value='Popular'>Popular</option>
+                            <option value='Esportivo'>Esportivo</option>
+                            <option value='Pick Ups'>Pick Ups</option>
                         </select>
                     </div>    
 
@@ -185,16 +221,16 @@ class SecaoCompra extends Component {
                     </div>
 
                     <PrecoContainer>
-                   
+                      <label>Preço:</label>
                         <InputPreco
-                        placeholder={'De'}
+                        placeholder={'De $'}
                         value={this.state.inputValorDe}
                         onChange={this.onChangeinputValorDe}
                         type='number'
                         />
 
                         <InputPreco
-                        placeholder={'Até'}
+                        placeholder={'Até $'}
                         value={this.state.inputValorAte}
                         onChange={this.onChangeinputValorAte}
                         type='number'
