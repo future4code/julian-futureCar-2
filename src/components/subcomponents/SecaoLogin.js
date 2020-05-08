@@ -32,15 +32,15 @@ class SecaoLogin extends React.Component {
                 <SecaoLoginTitulo>
                     Seu interesse em carros usados é
                 </SecaoLoginTitulo>
+                <div>
+                    <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoCompra}>
+                    Comprar?
+                    </BotaoLogin>
 
-                <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoCompra}>
-                Comprar?
-                </BotaoLogin>
-
-                <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoAnuncio}>
-                Vender?
-                </BotaoLogin>
-                
+                    <BotaoLogin color='primary' variant='outlined' onClick={this.props.onClickSecaoAnuncio}>
+                    Vender?
+                    </BotaoLogin>
+                </div>
             </SecaoLoginContainer>
         )
     }

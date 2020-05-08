@@ -12,7 +12,7 @@ const TelaAppContainer = styled.main`
 class AppContainer extends React.Component {
 
   state={
-    secaoAtual: 'COMPRA'
+    secaoAtual: 'LOGIN'
   }
 
   onClickSecaoCompra =()=>{
@@ -30,6 +30,7 @@ class AppContainer extends React.Component {
     this.setState({ secaoAtual: 'LOGIN' })
   }
 
+  
   render() {
 
     let montarSecao = () =>{
