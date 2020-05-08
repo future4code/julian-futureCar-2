@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import CardProduto from './CardProduto'
+import CardCarro from './CardCarro'
+import axios from 'axios'
 
 const DivContainer = styled.div`
     width: 50%;
@@ -11,14 +12,37 @@ const DivContainer = styled.div`
 
 class GridProduto extends React.Component {
 
-    render() {
-        const listaDeComponentes = this.props.listaDeProdutos.map((produto)=> {
-            return <CardProduto key={produto.id} infoProduto={produto}/>
-          })
+    state={
+        
+    }
 
+    componentDidMount(){
+        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/futureCarTwo/cars").then(response => {
+            
+            this.setState({listaDeCarros: response.data})
+        }).catch(erro => {
+        }) 
+    }
+
+    componentDidUpdate(){
+
+    }
+
+    render() {
+        const listaDeComponentes =()=>{ 
+            if(this.state.listaDeCarros !== undefined){
+                const listaCarros = this.state.listaDeCarros.cars
+
+                const listaMontada = listaCarros.map(carro => {
+                    return <CardCarro key={carro.id} objetoCarro={carro}/>
+                });
+
+                return listaMontada
+            }
+        }
         return(
             <DivContainer>
-                {listaDeComponentes}
+                {listaDeComponentes()}
             </DivContainer>
         )
     }
