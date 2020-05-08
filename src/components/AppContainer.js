@@ -12,7 +12,7 @@ const TelaAppContainer = styled.main`
 class AppContainer extends React.Component {
 
   state={
-    secaoAtual: 'ANUNCIO'
+    secaoAtual: 'LOGIN'
   }
 
   onClickSecaoCompra =()=>{
